@@ -1,0 +1,5 @@
+Shipping Mode,Orders,Scheduled_Days,Actual_Days,Average_Delay_Gap,Delayed_Rate,SLA_Compliance,Efficiency_Index
+First Class,26513,1.0,2.0,1.0,100.0,0.0,1.75
+Second Class,33806,2.0,3.99,1.99,79.83,20.17,1.39
+Same Day,9293,0.0,0.48,0.48,47.93,52.07,0.84
+Standard Class,103153,4.0,3.99,-0.01,39.77,60.23,0.69
