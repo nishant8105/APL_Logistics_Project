@@ -1,0 +1,24 @@
+Order Region,Orders,Average_Delay_Gap,Delayed_Rate,Regional_Delay_Index
+Central Africa,1616,0.63,60.15,1.05
+Western Europe,25867,0.6,58.53,1.02
+South of USA,3855,0.6,58.52,1.02
+South Asia,7455,0.6,58.35,1.02
+East Africa,1781,0.59,58.17,1.02
+East of USA,6617,0.59,58.17,1.02
+Southeast Asia,9136,0.56,57.98,1.01
+West Asia,5746,0.58,57.81,1.01
+Eastern Europe,3785,0.59,57.65,1.01
+US Center,5653,0.6,57.53,1.0
+South America,14184,0.56,57.18,1.0
+Central America,27174,0.56,57.11,1.0
+North Africa,3086,0.56,57.1,1.0
+Southern Europe,9030,0.51,56.8,0.99
+West of USA,7595,0.56,56.79,0.99
+Eastern Asia,6973,0.56,56.72,0.99
+Central Asia,542,0.63,56.46,0.99
+Oceania,9733,0.56,56.32,0.98
+Northern Europe,9408,0.54,56.25,0.98
+Southern Africa,1100,0.48,56.09,0.98
+Caribbean,7951,0.54,55.53,0.97
+West Africa,3571,0.55,54.69,0.95
+Canada,907,0.38,51.6,0.9
