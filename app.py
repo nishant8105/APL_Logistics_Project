@@ -200,7 +200,7 @@ if page == "Delay prediction":
                    "Changing the scheduled days away from the usual value gives a prediction outside what the models have seen.")
 
     st.subheader("How good are the models? (20% test set)")
-    st.dataframe(bundle["results"].sort_values("ROC_AUC", ascending=False), width="stretch")
+    st.dataframe(bundle["results"].sort_values("ROC_AUC", ascending=False), use_container_width=True)
     st.caption("A simple rule using only the shipping mode is almost as accurate as the models. "
                "Shipping mode and scheduled days carry nearly all the signal in this dataset.")
     st.stop()
@@ -298,7 +298,7 @@ shipping_summary = filtered.groupby("Shipping Mode").agg(
 shipping_summary["SLA_Compliance"] = 100 - shipping_summary["Delayed_Rate"]
 shipping_summary["Efficiency_Index"] = shipping_summary["Delayed_Rate"] / overall_delayed_rate
 shipping_summary = shipping_summary.round(2).sort_values("Delayed_Rate", ascending=False)
-st.dataframe(shipping_summary, width="stretch")
+st.dataframe(shipping_summary, use_container_width=True)
 st.caption("Efficiency index = mode delayed rate / overall delayed rate. Above 1 means worse than average.")
 
 left, right = st.columns(2)
@@ -322,7 +322,7 @@ region_summary = filtered.groupby("Order Region").agg(
 region_summary["Regional_Delay_Index"] = region_summary["Delayed_Rate"] / overall_delayed_rate
 region_summary = region_summary.round(2).sort_values("Delayed_Rate", ascending=False)
 st.write("Regions with the highest delayed rates")
-st.dataframe(region_summary, width="stretch")
+st.dataframe(region_summary, use_container_width=True)
 st.bar_chart(region_summary.set_index("Order Region")["Delayed_Rate"])
 
 market_summary = filtered.groupby("Market").agg(
@@ -330,9 +330,9 @@ market_summary = filtered.groupby("Market").agg(
     Average_Delay_Gap=("Delay Gap", "mean"),
     Delayed_Rate=("Delivery Timing", lambda x: (x == "Delayed").mean() * 100)
 ).reset_index()
-market_summary["Regional_Delay_Index"] = market_summary["Delayed_Rate"] / overall_delayed_rate
+market_summary["Market_Delay_Index"] = market_summary["Delayed_Rate"] / overall_delayed_rate
 st.write("Market performance")
-st.dataframe(market_summary.round(2).sort_values("Delayed_Rate", ascending=False), width="stretch")
+st.dataframe(market_summary.round(2).sort_values("Delayed_Rate", ascending=False), use_container_width=True)
 
 st.write("Heatmap: delayed rate (%) by region and shipping mode")
 heat = filtered.pivot_table(index="Order Region", columns="Shipping Mode",
@@ -360,7 +360,7 @@ country_summary = filtered.groupby("Order Country").agg(
     Delayed_Rate=("Delivery Timing", lambda x: (x == "Delayed").mean() * 100)
 ).reset_index()
 country_summary = country_summary[country_summary["Orders"] >= 100].round(2)
-st.dataframe(country_summary.sort_values("Delayed_Rate", ascending=False).head(10), width="stretch")
+st.dataframe(country_summary.sort_values("Delayed_Rate", ascending=False).head(10), use_container_width=True)
 
 # ---------- Customer segment ----------
 st.subheader("Customer segment impact")
@@ -372,7 +372,7 @@ segment_summary = filtered.groupby("Customer Segment").agg(
 ).reset_index()
 segment_summary["Share_of_Orders_%"] = segment_summary["Orders"] / segment_summary["Orders"].sum() * 100
 segment_summary["Share_of_Late_Orders_%"] = segment_summary["Late_Orders"] / max(segment_summary["Late_Orders"].sum(), 1) * 100
-st.dataframe(segment_summary.round(2), width="stretch")
+st.dataframe(segment_summary.round(2), use_container_width=True)
 st.caption("If a segment's share of late orders is higher than its share of orders, it carries extra SLA risk.")
 
 # ---------- Delivery status ----------
@@ -382,7 +382,7 @@ status_summary = filtered.groupby("Delivery Status").agg(
     Average_Delay_Gap=("Delay Gap", "mean"),
     Late_Risk_Rate=("Late_delivery_risk", "mean")
 ).reset_index().round(2)
-st.dataframe(status_summary, width="stretch")
+st.dataframe(status_summary, use_container_width=True)
 
 # ---------- Download ----------
 st.subheader("Download filtered data")
